@@ -20,20 +20,27 @@ const ProductCard: React.FC<ProductCardProps> = ({
   onToggleFavorite,
 }) => {
   return (
-    <div className="col">
-      <div className="card h-100">
-        <img src={product.image} className="card-img-top" alt={product.title} />
+    <div className="col-12 col-md-3">
+      <div className="card card-products primary-bg-color">
+        <img
+          src={product.image}
+          className="card-img-top img-fluid w-100"
+          alt={product.title}
+        />
         <div className="card-body">
-          <h5 className="card-title">{product.title}</h5>
-          <p className="card-text">{product.description}</p>
-          <p className="card-text">${product.price}</p>
+          <p className="card-category secondary-color">{product.title}</p>
+          <p className="card-text primary-color">R${product.price}</p>
+          <a href="#" className="btn btn-primary w-50">
+            Comprar
+          </a>
+
           <button
             onClick={() => onToggleFavorite(product)}
             className={`btn ${
               isFavorite ? 'btn-danger' : 'btn-outline-secondary'
             }`}
           >
-            {isFavorite ? 'Unfavorite' : 'Favorite'}
+            {isFavorite ? 'Unfavorite' : '❤️'}
           </button>
         </div>
       </div>

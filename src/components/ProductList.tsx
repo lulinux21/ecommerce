@@ -12,7 +12,7 @@ type Product = {
 };
 
 const fetchProducts = async (): Promise<Product[]> => {
-  const { data } = await axios.get('https://fakestoreapi.com/products');
+  const { data } = await axios.get('https://fakestoreapi.com/products?limit=4');
   return data;
 };
 
@@ -35,29 +35,15 @@ const ProductList = () => {
   if (error) return <p>Error loading products</p>;
 
   return (
-    <div>
-      <h2 className="mb-4">Favorites</h2>
-      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        {favorites.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            isFavorite={true}
-            onToggleFavorite={toggleFavorite}
-          />
-        ))}
-      </div>
-      <h2 className="mt-4 mb-4">All Products</h2>
-      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        {data?.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            isFavorite={favorites.includes(product)}
-            onToggleFavorite={toggleFavorite}
-          />
-        ))}
-      </div>
+    <div className="row">
+      {data?.map((product) => (
+        <ProductCard
+          key={product.id}
+          product={product}
+          isFavorite={favorites.includes(product)}
+          onToggleFavorite={toggleFavorite}
+        />
+      ))}
     </div>
   );
 };

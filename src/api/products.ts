@@ -7,9 +7,7 @@ type Product = {
 };
 
 const fetchProducts = async (): Promise<Product[]> => {
-  const response = await axios.get(
-    'https://fakestoreapi.com/products?limit=20',
-  );
+  const response = await axios.get('https://fakestoreapi.com/products?limit=5');
   return response.data;
 };
 
